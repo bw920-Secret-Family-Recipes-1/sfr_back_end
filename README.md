@@ -4,11 +4,11 @@ The little cards my grandma wrote the recipes on in her beautiful cursive are ge
 
 Registration requires :
 
-* firstname
-* lastname
+* firstName
+* lastName
 * email
 * username
-
+* password
 email and username must be different everytime you register
 
 Login requires :
