@@ -1,0 +1,30 @@
+{
+  "name": "sfr_back_end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bw920-Secret-Family-Recipes-1/sfr_back_end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bw920-Secret-Family-Recipes-1/sfr_back_end/issues"
+  },
+  "homepage": "https://github.com/bw920-Secret-Family-Recipes-1/sfr_back_end#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^4.1.1",
+    "knee": "0.0.7",
+    "knex": "^0.21.5",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
