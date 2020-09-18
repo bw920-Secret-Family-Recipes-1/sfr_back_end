@@ -1,25 +1,25 @@
-const recipe = require("../database/models/recipes-model")
+// const recipe = require("../database/models/recipes-model")
 const users = require("../database/models/users-model")
 
 
-function validateRecipeId() {
-    return(req, res, next) => {
-      recipe.getByRecipeId(req.params.id)
-      .then((recipe) => {
-        if(recipe){
-          req.recipe = recipe
-          next()
-        } else {
-          res.status(400).json({
-              message: "invalid recipe id"
-          })
-        }
-      })
-      .catch((error) => {
-        next(error)
-      })
-    }  
-  }
+// function validateRecipeId() {
+//     return(req, res, next) => {
+//       recipe.getByRecipeId(req.params.id)
+//       .then((recipe) => {
+//         if(recipe){
+//           req.recipe = recipe
+//           next()
+//         } else {
+//           res.status(400).json({
+//               message: "invalid recipe id"
+//           })
+//         }
+//       })
+//       .catch((error) => {
+//         next(error)
+//       })
+//     }  
+//   }
 
   function validateUserId() {
     return(req, res, next) => {
@@ -63,7 +63,7 @@ function validateRecipeId() {
   }
 
   module.exports ={ 
-      validateRecipeId,
+      // validateRecipeId,
       validateUser,
       validateUserId
   }

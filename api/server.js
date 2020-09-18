@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const restrict = require("../middleware/restrict");
 const authRouter = require("../routers/auth-router");
-const recipesRouter = require("../routers/recipes-router");
+// const recipesRouter = require("../routers/recipes-router");
 const usersRouter = require("../routers/users-router");
 
 const server = express();
@@ -17,14 +17,16 @@ server.use(express.json());
 server.use(cookieParser());
 
 server.use("/auth", authRouter);
-server.use("/recipes", restrict(), recipesRouter);
+// server.use("/recipes", restrict(), recipesRouter);
 server.use("/users", restrict(), usersRouter);
 
 server.get("/", (req, res) => {
+
   res.json({
     message: "Welcome to Secret family recipes. ",
   });
 });
+
 
 server.use((err, req, res, next) => {
   console.log(err);

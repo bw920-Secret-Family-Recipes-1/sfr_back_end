@@ -18,3 +18,38 @@ Login requires :
 
 -
 ENDPOINTS:
+
+user login
+register user
+GET all recipes - Don't need it
+GET recipes by user ID
+GET recipe by recipe ID
+POST recipe by user ID
+PUT recipe by recipe ID
+DELETE recipe
+How will we handle logout?
+
+
+user - registration
+
+firstName required
+lastName required
+username required
+email
+password required
+recipe
+recipeName required
+category required (options - appetizer, entree, dessert, beverage)
+ingredientList required
+directions
+source
+description
+
+
+
+
+
+
+
+PVD
+https://docs.google.com/document/d/16JU1RaqM2jH1eikGR-Ix3y-HGSSUc1rdcyPmB3F3qSM/edit#
