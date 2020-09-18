@@ -62,8 +62,14 @@ description
 
 
 
-
-
-
 PVD
 https://docs.google.com/document/d/16JU1RaqM2jH1eikGR-Ix3y-HGSSUc1rdcyPmB3F3qSM/edit#
+
+
+## .env
+
+```
+JWT_SECRET=""
+TEST_USER=""
+TEST_USER_PASSWORD=""
+```
