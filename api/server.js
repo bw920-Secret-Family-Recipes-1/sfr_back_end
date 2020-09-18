@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const restrict = require("../middleware/restrict");
 const authRouter = require("../routers/auth-router");
-const recipesRouter = require("../routers/recipes-router");
+// const recipesRouter = require("../routers/recipes-router");
 const usersRouter = require("../routers/users-router");
 
 const server = express();

@@ -19,6 +19,20 @@ Login requires :
 -
 ENDPOINTS:
 
+Create new user ( POST - https://secretrecipebw.herokuapp.com/auth/register )
+Login new user ( POST - https://secretrecipebw.herokuapp.com/auth/login )
+Get users ( GET - https://secretrecipebw.herokuapp.com/users )
+Get users by id ( GET - https://secretrecipebw.herokuapp.com/users/:id )
+Update users by id ( PUT - https://secretrecipebw.herokuapp.com/users/:id )
+Delete users by id ( DELETE - https://secretrecipebw.herokuapp.com/users/:id )
+
+
+
+
+
+
+
+
 user login
 register user
 GET all recipes - Don't need it
