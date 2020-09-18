@@ -1,13 +1,34 @@
 const express = require("express");
-const recipes = require("../database/models/recipes-model");
+const recipesModel = require("../database/models/recipes-model");
 const { validateUserId, validateRecipeId } = require("../middleware/validate");
 
 const router = express.Router();
 
-//----------------------------//
-// GET all recipes by user id //
-//----------------------------//
-router.get("/:id", validateUserId(), (req, res, next) => {});
+//------------------//
+// GET all recipes  //
+//------------------//
+router.get("/", (req, res, next) => {
+  try {
+    const allRecipes = recipesModel.getRecipes(req.params.id).then((recipe) => {
+      res.json(recipe);
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+//------------------------------//
+// GET all recipes by recipe id //
+//------------------------------//
+router.get("/:id", validateRecipeId(), (req, res, next) => {
+  try{
+    const recipe = await recipesModel.getByRecipeId(req.params.id).then((item) =>{
+      res.json(item)
+    })
+  } catch(err){
+    next(err)
+  }
+});
 
 //-----------------------------//
 // POST all recipes by user id //
