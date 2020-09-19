@@ -9,9 +9,11 @@ const router = express.Router();
 //------------------//
 router.get("/", (req, res, next) => {
   try {
-    const allRecipes = recipesModel.getRecipes(req.params.id).then((recipe) => {
-      res.json(recipe);
-    });
+    const allRecipes = recipesModel
+      .getAllRecipes(req.params.id)
+      .then((recipe) => {
+        res.json(recipe);
+      });
   } catch (err) {
     next(err);
   }
@@ -20,13 +22,15 @@ router.get("/", (req, res, next) => {
 //------------------------------//
 // GET all recipes by recipe id //
 //------------------------------//
-router.get("/:id", validateRecipeId(), (req, res, next) => {
-  try{
-    const recipe = await recipesModel.getByRecipeId(req.params.id).then((item) =>{
-      res.json(item)
-    })
-  } catch(err){
-    next(err)
+router.get("/:id", validateRecipeId(), async (req, res, next) => {
+  try {
+    const recipe = await recipesModel
+      .getByRecipeId(req.params.id)
+      .then((item) => {
+        res.json(item);
+      });
+  } catch (err) {
+    next(err);
   }
 });
 
@@ -34,10 +38,10 @@ router.get("/:id", validateRecipeId(), (req, res, next) => {
 // POST all recipes by user id //
 //-----------------------------//
 router.post("/:id", validateUserId(), (req, res, next) => {
-  recipes
+  recipesModel
     .getByRecipeId(req.params.id)
     .then((recipe) => {
-      res.status(201).json(recipe);
+      res.status(201).json(recipesModel);
     })
     .catch((err) => {
       next(err);
@@ -48,7 +52,7 @@ router.post("/:id", validateUserId(), (req, res, next) => {
 // DELETE recipe by recipe id    //
 //-------------------------------//
 router.delete("/:id", validateRecipeId(), (req, res, next) => {
-  recipes
+  recipesModel
     .remove(req.params.id)
     .then((recipe) => {
       res.status(200).json(recipe);
@@ -62,10 +66,10 @@ router.delete("/:id", validateRecipeId(), (req, res, next) => {
 // PUT recipe by by recipe id //
 //----------------------------//
 router.put("/:id", validateRecipeId(), (req, res, next) => {
-  recipes
+  recipesModel
     .update(req.params.id, req.body)
     .then((recipe) => {
-      res.statusCode(200).json(recipe);
+      res.status(200).json(recipe);
     })
     .catch((err) => {
       next(err);

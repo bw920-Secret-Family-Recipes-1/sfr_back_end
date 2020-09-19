@@ -4,20 +4,20 @@ const db = require("../dbConfig");
 // GET all recipes
 function getAllRecipes() {
   return db("recipes as r")
-  .join("category as c", "r.cateogry_id", "c.id", )
-  .select(
-    "recipes.id", 
-    "recipes.recipeName",
-    "c.name", 
-    "r.source", 
-    "r.ingredientList", 
-    "r.directions", 
-
-    )
+    .join("category as c", "r.category_id", "c.id")
+    .select(
+      "r.id",
+      "r.recipeName",
+      "c.name",
+      "r.source",
+      "r.ingredientList",
+      "r.directions"
+    );
 }
 
+  // GET recipe by recipeID
 function getByRecipeId(id) {
-  return db("recipes").where({ "recipes.id": "id" }).first();
+  return db("recipes").where({ id }).first();
 }
 
 // POST new recipe by userID
