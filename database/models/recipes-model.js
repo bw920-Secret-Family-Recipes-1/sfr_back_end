@@ -17,13 +17,16 @@ function getAllRecipes() {
 
   // GET recipe by recipeID
 function getByRecipeId(id) {
-  return db("recipes").where({ id }).first();
+  return db("recipes").where({ id }).first().select("recipeName");
 }
 
-// POST new recipe by userID
-async function add(recipe) {
-  const [id] = await db("recipes").insert(recipe, "id");
-  return db("recipes").where({ id }).first();
+function getByUserId(user_id){
+  return db("recipes").where({ user_id }).first();
+}
+
+function add(data){
+  return db("recipes")
+  .insert(data)
 }
 
 // PUT recipe by recipeID
@@ -38,6 +41,7 @@ function remove(id) {
 module.exports = {
   getAllRecipes,
   getByRecipeId,
+  getByUserId,
   add,
   update,
   remove,

@@ -32,10 +32,6 @@ Update recipe by recipe id (PUT - http://localhost:3300/recipes/:id)
 Delete recipes by recipe id (DELETE - http://localhost:3300/recipes/:id)
 
 
-
-
-
-
 user login
 register user
 GET all recipes - Don't need it
