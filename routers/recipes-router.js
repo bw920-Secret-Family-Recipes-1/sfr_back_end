@@ -20,12 +20,12 @@ router.get("/", (req, res, next) => {
 });
 
 //------------------------------//
-// GET all recipes by recipe id //
+// GET all recipes by user id //
 //------------------------------//
-router.get("/:id", validateRecipeId(), async (req, res, next) => {
+router.get("/:id", validateUserId(), async (req, res, next) => {
   try {
     const recipe = await recipesModel
-      .getByRecipeId(req.params.id)
+      .getByUserId(req.params.id)
       .then((item) => {
         res.json(item);
       });
@@ -37,15 +37,18 @@ router.get("/:id", validateRecipeId(), async (req, res, next) => {
 //-----------------------------//
 // POST all recipes by user id //
 //-----------------------------//
-router.post("/:id", validateUserId(), (req, res, next) => {
-  recipesModel
-    .getByRecipeId(req.params.id)
-    .then((recipe) => {
-      res.status(201).json(recipesModel);
-    })
-    .catch((err) => {
-      next(err);
-    });
+router.post("/", async (req, res, next) => {
+  const recipe = req.body;
+  try{
+    const newRecipe = await recipesModel.add(recipe);
+    if(newRecipe){
+      res.status(201).json("Success")
+    } else {
+      res.status(404).json("Unsuccessful at adding new recipe");
+    }
+  } catch(err){
+    next(err);
+  }
 });
 
 //-------------------------------//
