@@ -8,25 +8,25 @@ function getAllRecipes() {
     .select(
       "r.id",
       "r.recipeName",
-      "c.name",
+      "c.categoryName",
       "r.source",
       "r.ingredientList",
       "r.directions"
     );
 }
 
-  // GET recipe by recipeID
-function getByRecipeId(id) {
-  return db("recipes").where({ id }).first().select("recipeName");
-}
-
-function getByUserId(user_id){
-  return db("recipes").where({ user_id }).first();
-}
-
-function add(data){
-  return db("recipes")
-  .insert(data)
+// GET recipe by recipeID
+function getByRecipeId(recipeID) {
+  return db("recipes as r")
+    .join("category as c", "r.category_id", "c.id")
+    .where("r.id", recipeID)
+    .select(
+      "r.recipeName",
+      "c.categoryName",
+      "r.source",
+      "r.ingredientList",
+      "r.directions"
+    );
 }
 
 // PUT recipe by recipeID
@@ -41,8 +41,6 @@ function remove(id) {
 module.exports = {
   getAllRecipes,
   getByRecipeId,
-  getByUserId,
-  add,
   update,
   remove,
 };
