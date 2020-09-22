@@ -6,11 +6,12 @@ exports.up = async function(knex) {
         table.text("email").notNull().unique()
         table.text("username").notNull().unique()
         table.text("password").notNull()
+
     })
   
     await knex.schema.createTable("category", (table) => {
         table.increments("id")
-        table.text("name").notNull().unique()
+        table.text("categoryName").notNull().unique()
   
     })
   

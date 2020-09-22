@@ -25,6 +25,8 @@ Get users ( GET - https://secretrecipebw.herokuapp.com/users )
 Get users by id ( GET - https://secretrecipebw.herokuapp.com/users/:id )
 Update users by id ( PUT - https://secretrecipebw.herokuapp.com/users/:id )
 Delete users by id ( DELETE - https://secretrecipebw.herokuapp.com/users/:id )
+Create new recipe by user id (POST - https://secretrecipebw.herokuapp.com/users/:id/recipes)
+Get recipe by user id (GET - https://secretrecipebw.herokuapp.com/users/:id/recipes)
 
 Get all recipes (GET - https://secretrecipebw.herokuapp.com/recipes)
 Get recipes by recipe id ( GET - https://secretrecipebw.herokuapp.com/recipes/:id)

@@ -1,7 +1,8 @@
 const express = require("express");
 const users = require("../database/models/users-model");
-const recipes = require("../database/models/recipes-model");
+const recipesModel = require("../database/models/recipes-model");
 const { validateUserId, validateUser } = require("../middleware/validate");
+const usersModel = require("../database/models/users-model");
 
 const router = express.Router();
 
@@ -50,18 +51,30 @@ router.put("/:id", validateUserId(), (req, res, next) => {
     });
 });
 
-//-----------------------------//
-// POST all recipes by user id //
-//-----------------------------//
-router.post("/:id/recipes", validateUserId(), (req, res, next) => {
-  recipes
-    .getByRecipeId(req.params.id)
-    .then((recipe) => {
-      res.status(201).json(recipe);
-    })
-    .catch((err) => {
-      next(err);
+router.get("/:id/recipes", validateUserId(), async (req, res, next) => {
+  try {
+    const recipe = await usersModel.getByUserId(req.params.id).then((item) => {
+      res.json(item);
     });
+
+    res.json(recipe);
+  } catch (err) {
+    next(err);
+  }
 });
 
-module.exports = router
+router.post("/:id/recipes", async (req, res, next) => {
+  const recipe = req.body;
+  try {
+    const newRecipe = await usersModel.addRecipe(recipe);
+    if (newRecipe) {
+      res.status(201).json("Success");
+    } else {
+      res.status(404).json("Unsuccessful at adding new recipe");
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+module.exports = router;

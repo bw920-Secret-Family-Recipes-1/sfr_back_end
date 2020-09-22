@@ -19,37 +19,21 @@ router.get("/", (req, res, next) => {
   }
 });
 
-//------------------------------//
-// GET all recipes by user id //
-//------------------------------//
-router.get("/:id", validateUserId(), async (req, res, next) => {
+
+router.get("/:id", validateRecipeId(), async (req, res, next) => {
   try {
     const recipe = await recipesModel
-      .getByUserId(req.params.id)
+      .getByRecipeId(req.params.id)
       .then((item) => {
         res.json(item);
       });
+
+      res.json(recipe)
   } catch (err) {
     next(err);
   }
 });
 
-//-----------------------------//
-// POST all recipes by user id //
-//-----------------------------//
-router.post("/", async (req, res, next) => {
-  const recipe = req.body;
-  try{
-    const newRecipe = await recipesModel.add(recipe);
-    if(newRecipe){
-      res.status(201).json("Success")
-    } else {
-      res.status(404).json("Unsuccessful at adding new recipe");
-    }
-  } catch(err){
-    next(err);
-  }
-});
 
 //-------------------------------//
 // DELETE recipe by recipe id    //
