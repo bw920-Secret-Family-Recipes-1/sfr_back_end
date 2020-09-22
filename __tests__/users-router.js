@@ -44,18 +44,19 @@ afterAll(async () => {
 })
 
 describe("users integration tests", () => {
-    it("get /users SUCCEED", async () => {
-        const res = await supertest(server).get("/users").set(token)
-        expect(res.statusCode).toBe(200)
-        expect(res.type).toBe("application/json")
-        expect(res.body).toHaveLength(3)
-    })
+    // it("get /users SUCCEED", async () => {
+    //     const res = await supertest(server).get("/users").set(token)
+    //     expect(res.statusCode).toBe(200)
+    //     expect(res.type).toBe("application/json")
+    //     expect(res.body).toHaveLength(3)
+    // })
 
     it("get /users FAIL", async () => {
         const res = await supertest(server).get("/users")
         expect(res.statusCode).toBe(401)
         expect(res.type).toBe("application/json")
     })
+
 
     it("get /users/:id FAIL", async () => {
         const res = await supertest(server).get("/users/2")
