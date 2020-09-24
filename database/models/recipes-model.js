@@ -1,9 +1,18 @@
 const bcrypt = require("bcryptjs");
 const db = require("../dbConfig");
+const { getByUserId } = require("./users-model");
+// function addRecipe(userID) {
+//   return db("recipes as r").where("r.user_id", userID);
+// }
 
-function addRecipe(userID) {
-  return db("recipes as r").where("r.user_id", userID);
+function addRecipe(recipe){
+  return db("recipes")
+  .insert(recipe)
+  .then(id => {
+    getByUserId(id[0]);
+  })
 }
+
 
 // GET all recipes
 function getAllRecipes() {
