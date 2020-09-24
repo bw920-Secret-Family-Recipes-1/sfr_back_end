@@ -1,7 +1,11 @@
 const express = require("express");
 const users = require("../database/models/users-model");
 const recipesModel = require("../database/models/recipes-model");
-const { validateUserId, validateUser } = require("../middleware/validate");
+const {
+  validateUserId,
+  validateUser,
+  validateRecipeId,
+} = require("../middleware/validate");
 const usersModel = require("../database/models/users-model");
 
 const router = express.Router();
@@ -63,17 +67,23 @@ router.get("/:id/recipes", validateUserId(), async (req, res, next) => {
   }
 });
 
-router.post("/:id/recipes", async (req, res, next) => {
-  try {
-    const newRecipe = await recipesModel.addRecipe(req.body);
-    if (newRecipe) {
-      res.status(201).json("Success");
-    } else {
-      res.status(404).json("Unsuccessful at adding new recipe");
+//
+router.post(
+  "/:id/recipes",
+  validateUserId(),
+  validateRecipeId(),
+  async (req, res, next) => {
+    try {
+      const newRecipe = await recipesModel.addRecipe(req.body);
+      if (newRecipe) {
+        res.status(201).json("Success");
+      } else {
+        res.status(404).json("Unsuccessful at adding new recipe");
+      }
+    } catch (err) {
+      next(err);
     }
-  } catch (err) {
-    next(err);
   }
-});
+);
 
 module.exports = router;
