@@ -43,6 +43,20 @@ function remove(id) {
   return db("recipes").where("id", id).del();
 }
 
+async function addRecipe(recipe) {
+  const category_id = await db('category')
+    .where({ name: recipe.category.toLowerCase() })
+    .select("id")
+    .first()
+  if (recipe.category) delete recipe.category
+  return db('recipes')
+    .insert({ ...recipe, category_id })
+    .then((ids) => {
+      return getByRecipeId(ids[0])
+    })
+}
+
+
 module.exports = {
   addRecipe,
   getAllRecipes,
