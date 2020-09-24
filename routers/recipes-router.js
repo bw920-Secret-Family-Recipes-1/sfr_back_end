@@ -24,8 +24,8 @@ router.get("/:id", validateRecipeId(), async (req, res, next) => {
   try {
     const recipe = await recipesModel
       .getByRecipeId(req.params.id)
-      .then((item) => {
-        res.json(item);
+      .then((recipe) => {
+        res.json(recipe);
       });
 
       res.json(recipe)

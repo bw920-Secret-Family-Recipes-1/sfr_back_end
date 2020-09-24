@@ -1,6 +1,10 @@
 const bcrypt = require("bcryptjs");
 const db = require("../dbConfig");
 
+function addRecipe(userID) {
+  return db("recipes as r").where("r.user_id", userID);
+}
+
 // GET all recipes
 function getAllRecipes() {
   return db("recipes as r")
@@ -38,7 +42,9 @@ function update(id, changes) {
 function remove(id) {
   return db("recipes").where("id", id).del();
 }
+
 module.exports = {
+  addRecipe,
   getAllRecipes,
   getByRecipeId,
   update,
