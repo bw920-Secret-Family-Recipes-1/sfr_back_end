@@ -63,14 +63,4 @@ router.put("/:id", validateRecipeId(), (req, res, next) => {
     });
 });
 
-router.post('/', (req, res, next) => {
-  recipesModel.addRecipe({ ...req.body, user_id: req.token.userId })
-  .then(recipe => {
-      res.status(201).json(recipe);
-  })
-  .catch(err => {
-      next(err)
-  })
-})
-
 module.exports = router;
