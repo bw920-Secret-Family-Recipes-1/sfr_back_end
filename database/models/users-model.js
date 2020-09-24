@@ -41,10 +41,9 @@ function getByUserId(userID) {
     );
 }
 
-function addRecipe(userID){
-    return db("recipes as r")
-    .where("r.user_id", userID)
-  }
+// function addRecipe(userID) {
+//   return db("recipes as r").where("r.user_id", userID);
+// }
 
 
 module.exports = {
@@ -53,7 +52,7 @@ module.exports = {
     findBy,
     findById,
     getByUserId,
-    addRecipe,
+    // addRecipe,
     update,
     remove
 
