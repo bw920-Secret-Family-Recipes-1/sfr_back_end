@@ -19,7 +19,9 @@ router.get("/", (req, res, next) => {
   }
 });
 
-
+//--------------------------//
+// GET recipes by recipe id //
+//--------------------------//
 router.get("/:id", validateRecipeId(), async (req, res, next) => {
   try {
     const recipe = await recipesModel

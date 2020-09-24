@@ -70,7 +70,7 @@ router.get("/:id/recipes", validateUserId(), async (req, res, next) => {
 //
 router.post(
   "/:id/recipes",
-  validateUserId(),
+  
   validateRecipeId(),
   async (req, res, next) => {
     try {
