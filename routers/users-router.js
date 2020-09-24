@@ -71,7 +71,7 @@ router.get("/:id/recipes", validateUserId(), async (req, res, next) => {
 router.post(
   "/:id/recipes",
   
-  validateRecipeId(),
+
   async (req, res, next) => {
     try {
       const newRecipe = await recipesModel.addRecipe(req.body);
